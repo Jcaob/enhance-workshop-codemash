@@ -9,5 +9,5 @@ export default function SiteContainer({ html }) {
       }
     </style>
     <slot></slot>
-  `
+  `;
 }

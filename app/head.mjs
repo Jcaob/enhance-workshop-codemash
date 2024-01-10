@@ -1,27 +1,27 @@
-import titlesByPath from './lib/titles-by-path.mjs'
-import { getStyles }  from '@enhance/arc-plugin-styles'
+import titlesByPath from "./lib/titles-by-path.mjs";
+import { getStyles } from "@enhance/arc-plugin-styles";
 
-const { linkTag } = getStyles
+const { linkTag } = getStyles;
 
 export default function Head(state) {
-  const { req, store } = state
-  const { path, session } = req
+  const { req, store } = state;
+  const { path, session } = req;
 
   if (store.authorized === undefined) {
-    store.authorized = session.authorized || false
+    store.authorized = session.authorized || false;
   }
   if (store.path === undefined) {
-    store.path = path
+    store.path = path;
   }
   if (store.author === undefined) {
     store.author = {
-      name: 'Axol Lotl',
-      title: 'Web Developer',
-      githubUsername: 'enhance-dev',
-    }
+      name: "Axol Lotl",
+      title: "Web Developer",
+      githubUsername: "enhance-dev",
+    };
   }
 
-  const title = titlesByPath[path] || ''
+  const title = titlesByPath[path] || "";
 
   return `
     <!DOCTYPE html>
@@ -35,7 +35,11 @@ export default function Head(state) {
       <meta name="description" content="Portfolio for Axol Lotl, Senior Developer" />
       ${linkTag()}
 
-      ${(req.path === '/resume') ? '<link rel="stylesheet" href="/_public/print-resume.css">' : ''}
+      ${
+        req.path === "/resume"
+          ? '<link rel="stylesheet" href="/_public/print-resume.css">'
+          : ""
+      }
 
       <style>
         @font-face {
@@ -58,6 +62,7 @@ export default function Head(state) {
 
         body {
           color: var(--dark);
+          background-color: white;
           text-rendering: optimizeLegibility;
         }
 
@@ -69,5 +74,5 @@ export default function Head(state) {
       </style>
     </head>
     <body class='font-sans'>
-`
+`;
 }

@@ -1,10 +1,14 @@
 export default function NavBar({ html, state }) {
-  const { store } = state
-  const { author } = store
+  const { store } = state;
+  const { author } = store;
   return html`
     <style>
       :host {
         display: block;
+      }
+
+      nav {
+        color: black;
       }
 
       .backdrop {
@@ -23,23 +27,29 @@ export default function NavBar({ html, state }) {
       }
     </style>
     <site-container>
-      <nav class='flex align-items-center gap0 leading1'>
-        <a href='/' class='no-underline flex align-items-center gap0'>
-          <img src='https://github.com/${author.githubUsername}.png' alt='Avatar for Axol Lotl' />
-          <h1 class='font-semibold tracking-1'>
+      <nav class="flex align-items-center gap0 leading1">
+        <a href="/" class="no-underline flex align-items-center gap0">
+          <img
+            src="https://github.com/${author.githubUsername}.png"
+            alt="Avatar for Axol Lotl"
+          />
+          <h1 class="font-semibold tracking-1">
             ${author.name}<br />
-            <span class='font-normal'>${author.title}</span>
+            <span class="font-normal">${author.title}</span>
           </h1>
         </a>
-        <ul class='mis-auto flex gap0 list-none text-1 uppercase tracking1 font-semibold'>
-          <li><a href='/'>Home</a></li>
-          <li><a href='/resume'>Résumé</a></li>
-          <li><a href='/linktree'>Links</a></li>
-          ${state.store?.authorized ?
-    `<li><form method="POST" action="/logout"> <button>Log Out</button></form></li>` : ''}
+        <ul
+          class="mis-auto flex gap0 list-none text-1 uppercase tracking1 font-semibold"
+        >
+          <li><a href="/">Home</a></li>
+          <li><a href="/resume">Résumé</a></li>
+          <li><a href="/linktree">Links</a></li>
+          ${state.store?.authorized
+            ? `<li><form method="POST" action="/logout"> <button>Log Out</button></form></li>`
+            : ""}
         </ul>
       </nav>
-      <div class='backdrop absolute inset-0 z-1'></div>
+      <div class="backdrop absolute inset-0 z-1"></div>
     </site-container>
-  `
+  `;
 }

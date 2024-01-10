@@ -10,5 +10,5 @@ export default function PageContainer({ html }) {
       }
     </style>
     <slot></slot>
-  `
+  `;
 }
